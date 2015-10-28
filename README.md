@@ -1,7 +1,6 @@
 FRC-2015
 ========
 
-Hi Andrew. 
 
 [![Build Status](https://travis-ci.org/chopshop-166/frc-2015.svg)](https://travis-ci.org/chopshop-166/frc-2015)
 
