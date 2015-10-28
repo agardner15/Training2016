@@ -19,6 +19,7 @@ import org.usfirst.frc.team166.robot.Robot;
 import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.Utility;
 import org.usfirst.frc.team166.robot.commands.drive.DriveWithJoysticks;
+import org.usfirst.frc.team166.robot.subsystems.Drive.IRSensor;
 
 public class Drive extends Subsystem {
 
@@ -186,7 +187,21 @@ public class Drive extends Subsystem {
 
 	public void turn90Left() {
 		double rotationSpeed = ((90 + getGyro()) * (.2 / 90));
-		robotDrive.mecanumDrive_Cartesian(0, 0, -rotationSpeed, 0);
+		robotDrive.mecanumDrive_Cartesian(0, 0, -rotationSpeed, 0); // 01100011 01101000 01101111 01110000 01110011
+																	// 01101000 01101111 01110000 00000001 00000110
+																	// 00000110
+	}
+
+	// training method/function, please ignore
+	public void turnProportional(double desiredAngle) {
+		double P = 0.1; // proportion
+		double error = desiredAngle - gyro.getAngle();
+		double power = error * P;
+		robotDrive.mecanumDrive_Cartesian(0, 0, power, 0);
+	}
+
+	public void GyroReset() {
+		gyro.reset();
 	}
 
 	public void turn45Left() {
